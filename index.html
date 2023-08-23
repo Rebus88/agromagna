@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista di Commercianti</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+        .commerciante {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 100%;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .bitcoin {
+            border-color: #f90;
+        }
+        .info {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div>	<br>Questa pagina mostra i commercianti, cioè contadini, allevatori, fungaioli, che vendono vari tipi di prodotti in Romagna a km0.<br>
+	    Vanno bene anche le varie bancarelle in giro e nelle piazze, l'importante è che siano direttamente loro a venderli, senza intermediari.<br>
+La pagina carica ad ogni apertura la lista dei commercianti in modo randomico, non dando quindi alcun vantaggio particolare.<br>
+L'unico vantaggio riguarda i commercianti che accettano "anche" Bitcoin come mezzo di pagamento, mettendolo in evidenza rispetto agli altri.<br>
+La pagina è mantenuta gratuitamente, senza alcuna fonte di ricavo.<br>
+Email: test@asfa.com - Telegram: @98jeux02938yr<br><br>
+	    <b>Consiglio: alle volte alcuni prodotti richiedono una gestione particolare, ad esempio per il trasporto, o non sono disponibili.<br>
+	    Per questo è sempre meglio contattare prima il venditore per ricevere maggiori informazioni e concordare con lui.</b><br><br>
+        <select id="filtroProdotti">
+            <!-- Le opzioni saranno aggiunte dinamicamente -->
+        </select>
+        <button onclick="filtraProdotti()">Filtra</button>
+		<select id="filtroProvince">
+            <!-- Le opzioni saranno aggiunte dinamicamente -->
+        </select>
+        <button onclick="filtraProvince()">Provincia</button>
+        <div id="listaCommercianti"></div>
+    </div>
+
+    <script>
+        var commercianti = [];
+
+        function filtraProdotti() {
+            var filtro = document.getElementById('filtroProdotti').value;
+            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                return commerciante.prodotti.includes(filtro);
+            });
+            mostraCommercianti(commerciantiFiltrati);
+            ordina();
+        }
+		
+		function filtraProvince() {
+            var filtro = document.getElementById('filtroProvince').value;
+            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                return commerciante.indirizzo.province.includes(filtro);
+            });
+            mostraCommercianti(commerciantiFiltrati);
+            ordina();
+        }
+
+        function ordina() {
+            commercianti.sort(function(a, b) {
+                if (a.sistemiPagamento.includes('Bitcoin') && !b.sistemiPagamento.includes('Bitcoin')) {
+                    return -1;
+                }
+                if (!a.sistemiPagamento.includes('Bitcoin') && b.sistemiPagamento.includes('Bitcoin')) {
+                                    return 1;
+                }
+                return 0.5 - Math.random();
+            });
+        }
+
+        function popolaFiltroProdotti() {
+            var filtroSelect = document.getElementById('filtroProdotti');
+            var prodotti = [];
+            commercianti.forEach(function(commerciante) {
+                commerciante.prodotti.forEach(function(prodotto) {
+                    if (!prodotti.includes(prodotto)) {
+                        prodotti.push(prodotto);
+                    }
+                });
+            });
+            prodotti.forEach(function(prodotto) {
+                var option = document.createElement('option');
+                option.value = prodotto;
+                option.textContent = prodotto;
+                filtroSelect.appendChild(option);
+            });
+        }
+		
+		function popolaFiltroProvince() {
+            var filtroSelect = document.getElementById('filtroProvince');
+            var province = [];
+            commercianti.forEach(function(commerciante) {
+		if (!province.includes(commerciante.indirizzo.province)) {
+                	province.push(commerciante.indirizzo.province);
+                }	 
+            });
+            province.forEach(function(provincia) {
+                var option = document.createElement('option');
+                option.value = provincia;
+                option.textContent = provincia;
+                filtroSelect.appendChild(option);
+            });
+        }
+
+        function mostraCommercianti(commercianti) {
+            var listaCommerciantiDiv = document.getElementById('listaCommercianti');
+            listaCommerciantiDiv.innerHTML = '';
+
+            commercianti.forEach(function(commerciante) {
+                var commercianteDiv = document.createElement('div');
+                commercianteDiv.className = 'commerciante';
+
+                if (commerciante.sistemiPagamento.includes('Bitcoin')) {
+                    commercianteDiv.classList.add('bitcoin');
+                }
+
+                var logoImg = document.createElement('img');
+                logoImg.className = 'logo';
+                logoImg.src = commerciante.logo;
+                commercianteDiv.appendChild(logoImg);
+
+                var infoDiv = document.createElement('div');
+
+                var nomeH2 = document.createElement('h2');
+                nomeH2.textContent = commerciante.nome;
+                infoDiv.appendChild(nomeH2);
+
+                var prodottiH3 = document.createElement('h3');
+                prodottiH3.textContent = 'Prodotti: ' + commerciante.prodotti.join(', ');
+                prodottiH3.className = 'info';
+                infoDiv.appendChild(prodottiH3);
+
+                var sistemiPagamentoH3 = document.createElement('h3');
+                sistemiPagamentoH3.textContent = 'Sistemi di Pagamento: ' + commerciante.sistemiPagamento.join(', ');
+                sistemiPagamentoH3.className = 'info';
+                infoDiv.appendChild(sistemiPagamentoH3);
+
+                var indirizzoH3 = document.createElement('h3');
+                indirizzoH3.textContent = 'Indirizzo: ' + commerciante.indirizzo.base + ', ' + commerciante.indirizzo.province;
+                indirizzoH3.className = 'info';
+                infoDiv.appendChild(indirizzoH3);
+
+                var contattiH3 = document.createElement('h3');
+                contattiH3.textContent = 'Contatti: ' + commerciante.contatti.telefono + ', ' + commerciante.contatti.email;
+                contattiH3.className = 'info';
+                infoDiv.appendChild(contattiH3);
+
+                commercianteDiv.appendChild(infoDiv);
+                listaCommerciantiDiv.appendChild(commercianteDiv);
+            });
+        }
+	fetch('comm.csv')    
+        .then(response => response.text())
+        .then(data => {
+            var rows = data.split('\n');
+            rows.slice(0,rows.length-1).forEach(row => {
+                var columns = row.split(',');
+                commercianti.push({
+                    nome: columns[0],
+                    logo: columns[1],
+                    prodotti: columns[2].split('|'),
+                    sistemiPagamento: columns[3].split('|'),
+                    indirizzo: {
+						base: columns[4],
+						province: columns[5]
+					},
+                    contatti: {
+                        telefono: columns[6],
+                        email: columns[7]
+                    }
+                });
+           });
+        
+            // Funzioni per mostrare i commercianti, popolare il filtro, ecc.
+            
+        ordina();
+        popolaFiltroProdotti();
+		popolaFiltroProvince();
+        mostraCommercianti(commercianti);
+        
+    });
+    </script>
+</body>
+</html>
