@@ -161,7 +161,7 @@ Email: test@asfa.com - Telegram: @98jeux02938yr<br><br>
                 infoDiv.appendChild(indirizzoH3);
 
                 var contattiH3 = document.createElement('h3');
-                contattiH3.textContent = 'Contatti ' + commerciante.contatti.telefono + ', ' + commerciante.contatti.email + ', ' + commerciante.contatti.sito;
+                contattiH3.textContent = 'Contatti ' + commerciante.contatti.telefono + ', ' + commerciante.contatti.email + ', <a href="url' + commerciante.contatti.sito + '">' + commerciante.contatti.sito + '</a>';
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
@@ -181,13 +181,13 @@ Email: test@asfa.com - Telegram: @98jeux02938yr<br><br>
                     prodotti: columns[2].split('|'),
                     sistemiPagamento: columns[3].split('|'),
                     indirizzo: {
-						base: columns[4],
-						province: columns[5]
-					},
+			base: columns[4],
+			province: columns[5]
+			},
                     contatti: {
                         telefono: columns[6],
                         email: columns[7],
-						sito: columns[8]
+			sito: columns[8]
                     }
                 });
            });
@@ -196,7 +196,7 @@ Email: test@asfa.com - Telegram: @98jeux02938yr<br><br>
             
         ordina();
         popolaFiltroProdotti();
-		popolaFiltroProvince();
+	popolaFiltroProvince();
         mostraCommercianti(commercianti);
         
     });
