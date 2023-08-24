@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-    <div><center><b><font size="6">Agromagna</font><b></center><br>Questa pagina mostra i commercianti, cioè contadini, allevatori, fungaioli, che vendono vari tipi di prodotti in Romagna a km0.<br>
+    <div><center><b><font size="6">Agromagna</font></b></center><br>Questa pagina mostra i commercianti, cioè contadini, allevatori, fungaioli, che vendono vari tipi di prodotti in Romagna a km0.<br>
 	    Vanno bene anche le varie bancarelle in giro e nelle piazze, l'importante è che siano direttamente loro a venderli, senza intermediari.<br>
         Si può anche vendere con spedizioni, l'importante è che il contatto sia sempre diretto con il produttore, che si possa sempre conoscerlo faccia a faccia.<br>
         La pagina carica ad ogni apertura la lista dei commercianti in modo randomico, non dando quindi alcun vantaggio particolare.<br>
@@ -167,10 +167,12 @@
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
+                if (sito) {
                 var sitoH3 = document.createElement('h3');
                 prodottiH3.textContent = 'Sito: ' + commerciante.sito;
                 prodottiH3.className = 'info';
                 infoDiv.appendChild(sitoH3);
+                }
 
                 commercianteDiv.appendChild(infoDiv);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
