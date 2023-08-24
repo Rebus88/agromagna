@@ -163,9 +163,14 @@
                 infoDiv.appendChild(indirizzoH3);
 
                 var contattiH3 = document.createElement('h3');
-                contattiH3.textContent = 'Contatti ' + commerciante.contatti.telefono + ', ' + commerciante.contatti.email + ', ' + commerciante.contatti.sito;
+                contattiH3.textContent = 'Contatti ' + commerciante.contatti.telefono + ', ' + commerciante.contatti.email;
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
+
+                var sitoH3 = document.createElement('h3');
+                prodottiH3.textContent = 'Sito: ' + commerciante.sito;
+                prodottiH3.className = 'info';
+                infoDiv.appendChild(sitoH3);
 
                 commercianteDiv.appendChild(infoDiv);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
@@ -188,9 +193,9 @@
 			},
                     contatti: {
                         telefono: columns[6],
-                        email: columns[7],
-			sito: columns[8]
-                    }
+                        email: columns[7]
+                    },
+                    sito: columns[8]
                 });
            });
         
