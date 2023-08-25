@@ -176,22 +176,27 @@ s0.parentNode.insertBefore(s1,s0);
                 indirizzoH3.className = 'info';
                 infoDiv.appendChild(indirizzoH3);
 
-                var emailLink = document.createElement('a');
-                var createAText2 = document.createTextNode(commerciante.contatti.email);
-                emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
-                emailLink.appendChild(createAText2);
+
 
                 var contattiH3 = document.createElement('h3');
-                contattiH3.textContent = 'Contatti ' + commerciante.contatti.telefono + ', email' + emailLink;
+                contattiH3.textContent = 'Telefono: ' + commerciante.contatti.telefono;
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
+                if (commerciante.email !=="") {
+                    var emailLink = document.createElement('a');
+                    var createAText2 = document.createTextNode(commerciante.contatti.email);
+                    emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
+                    emailLink.appendChild(createAText2);
+                    infoDiv.appendChild(emailLink);
+                }
+
                 if (commerciante.sito !== "") {
                     var sito = document.createElement('a');
-        var createAText = document.createTextNode(commerciante.sito);
-        sito.setAttribute('href', commerciante.sito);
-        sito.appendChild(createAText);
-        infoDiv.appendChild(sito);
+                    var createAText = document.createTextNode(commerciante.sito);
+                    sito.setAttribute('href', commerciante.sito);
+                    sito.appendChild(createAText);
+                    infoDiv.appendChild(sito);
         //getTheTableTag.appendChild(createA);        
 
 
