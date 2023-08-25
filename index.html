@@ -43,7 +43,7 @@
         La pagina carica ad ogni apertura la lista dei commercianti in modo randomico, non dando quindi alcun vantaggio particolare.<br>
         L'unico vantaggio riguarda i commercianti che accettano "anche" Bitcoin come mezzo di pagamento, mettendolo in evidenza rispetto agli altri.<br>
         La pagina è mantenuta gratuitamente, senza alcuna fonte di ricavo.<br>
-        Email: <a href="mailto:agromagna@proton.me">agromagna@proton.me</a> - Chat: <a href="https://tawk.to/agromagna">Agromagna</a><br><br>
+        Email: <a href="mailto:agromagna@proton.me">agromagna@proton.me</a> - Chat: <a href="https://tawk.to/agromagna" target="_blank">Agromagna</a><br><br>
 	    <b>Consiglio: alle volte alcuni prodotti richiedono una gestione particolare, ad esempio per il trasporto, o non sono disponibili.<br>
 	    Per questo è sempre meglio contattare prima il venditore per ricevere maggiori informazioni e concordare con lui.</b><br><br>
         <select id="filtroProdotti">
@@ -157,8 +157,6 @@ s0.parentNode.insertBefore(s1,s0);
 
                 var infoDiv = document.createElement('div');
 
-                var br = document.createElement("br");
-
                 var nomeH2 = document.createElement('h2');
                 nomeH2.textContent = commerciante.nome;
                 infoDiv.appendChild(nomeH2);
@@ -186,13 +184,11 @@ s0.parentNode.insertBefore(s1,s0);
                 if (commerciante.telefono !=="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
-                    //telefonoLink.textContent = "Telefono";
                     telefonoLink.textContent = commerciante.contatti.telefono;
                     contattiH3.appendChild(telefonoLink);
                     contattiH3.append(" ");
                 }
                 
-
                 if (commerciante.email !=="") {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
@@ -241,7 +237,7 @@ s0.parentNode.insertBefore(s1,s0);
             
         ordina();
         popolaFiltroProdotti();
-	popolaFiltroProvince();
+	    popolaFiltroProvince();
         mostraCommercianti(commercianti);
         
     });
