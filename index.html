@@ -186,8 +186,10 @@ s0.parentNode.insertBefore(s1,s0);
 
                 if (commerciante.telefono !=="") {
 
-                    var telefonoText = document.createElement("span", null, "Telefono: ");
+                    var telefonoText = document.createElement("span");
+                    telefonoText.setAttribute("class","sr-only");
                     telefonoText.className = 'info';
+                    telefonoText.textContent = "Telefono: ";
 
 
                     var telefonoLink = document.createElement('a');
