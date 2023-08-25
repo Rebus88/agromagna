@@ -159,7 +159,7 @@ s0.parentNode.insertBefore(s1,s0);
 
                 var nomeH2 = document.createElement('h2');
                 nomeH2.textContent = commerciante.nome;
-                infoDiv.appendChild(nomeH2);
+                infoDiv.a(nomeH2);
 
                 var prodottiH3 = document.createElement('h3');
                 prodottiH3.textContent = 'Prodotti: ' + commerciante.prodotti.join(', ');
@@ -182,10 +182,18 @@ s0.parentNode.insertBefore(s1,s0);
                 infoDiv.appendChild(contattiH3);
 
                 if (commerciante.sito !== "") {
-                var sitoH3 = document.createElement('h3');
-                sitoH3.textContent = 'Sito: ' + commerciante.sito;
-                sitoH3.className = 'info';
-                infoDiv.appendChild(sitoH3);
+                    var sito = document.createElement('a');
+        var createAText = document.createTextNode(commerciante.sito);
+        sito.setAttribute('href', commerciante.sito);
+        sito.appendChild(createAText);
+        infoDiv.appendChild(sito);
+        //getTheTableTag.appendChild(createA);        
+
+
+                //var sitoH3 = document.createElement('h3');
+                //sitoH3.textContent = 'Sito: ' + commerciante.sito;
+                //sitoH3.className = 'info';
+                //infoDiv.appendChild(sitoH3);
                 }
 
                 commercianteDiv.appendChild(infoDiv);
