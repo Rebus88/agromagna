@@ -176,8 +176,6 @@ s0.parentNode.insertBefore(s1,s0);
                 indirizzoH3.className = 'info';
                 infoDiv.appendChild(indirizzoH3);
 
-                var aCapo = document.createTextNode('<br />');
-                aCapo.className = 'info';
 
                 //var contattiH3 = document.createElement('h3');
                 //contattiH3.textContent = 'Telefono: ' + commerciante.contatti.telefono;
@@ -186,12 +184,11 @@ s0.parentNode.insertBefore(s1,s0);
 
                 if (commerciante.telefono !=="") {
                     var telefonoLink = document.createElement('a');
-                    var createAText2 = document.createTextNode(commerciante.contatti.telefono);
+                    var createAText3 = document.createTextNode(commerciante.contatti.telefono);
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
-                    telefonoLink.appendChild(createAText2);
+                    telefonoLink.appendChild(createAText3);
                     telefonoLink.className = 'info';
                     infoDiv.appendChild(telefonoLink);
-                    infoDiv.appendChild(aCapo);
                 }
                 
 
@@ -202,7 +199,6 @@ s0.parentNode.insertBefore(s1,s0);
                     emailLink.appendChild(createAText2);
                     emailLink.className = 'info';
                     infoDiv.appendChild(emailLink);
-                    infoDiv.appendChild(aCapo);
                 }
 
                 if (commerciante.sito !== "") {
@@ -212,7 +208,6 @@ s0.parentNode.insertBefore(s1,s0);
                     sito.appendChild(createAText);
                     sito.className = 'info';
                     infoDiv.appendChild(sito);
-                    infoDiv.appendChild(aCapo);
         //getTheTableTag.appendChild(createA);        
 
 
