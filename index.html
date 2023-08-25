@@ -176,6 +176,8 @@ s0.parentNode.insertBefore(s1,s0);
                 indirizzoH3.className = 'info';
                 infoDiv.appendChild(indirizzoH3);
 
+                var aCapo = document.createElement('br');
+                aCapo.className = 'info';
 
                 //var contattiH3 = document.createElement('h3');
                 //contattiH3.textContent = 'Telefono: ' + commerciante.contatti.telefono;
@@ -189,7 +191,9 @@ s0.parentNode.insertBefore(s1,s0);
                     telefonoLink.appendChild(createAText2);
                     telefonoLink.className = 'info';
                     infoDiv.appendChild(telefonoLink);
+                    infoDiv.appendChild(aCapo);
                 }
+                
 
                 if (commerciante.email !=="") {
                     var emailLink = document.createElement('a');
@@ -198,6 +202,7 @@ s0.parentNode.insertBefore(s1,s0);
                     emailLink.appendChild(createAText2);
                     emailLink.className = 'info';
                     infoDiv.appendChild(emailLink);
+                    infoDiv.appendChild(aCapo);
                 }
 
                 if (commerciante.sito !== "") {
