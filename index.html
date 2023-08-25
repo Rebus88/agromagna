@@ -178,57 +178,36 @@ s0.parentNode.insertBefore(s1,s0);
                 indirizzoH3.className = 'info';
                 infoDiv.appendChild(indirizzoH3);
 
-
-                //var contattiH3 = document.createElement('h3');
-                //contattiH3.textContent = 'Telefono: ' + commerciante.contatti.telefono;
-                //contattiH3.className = 'info';
-                //infoDiv.appendChild(contattiH3);
+                var contattiH3 = document.createElement('h3');
+                contattiH3.textContent = 'Contatti: ';
+                contattiH3.className = 'info';
+                infoDiv.appendChild(contattiH3);
 
                 if (commerciante.telefono !=="") {
-
-                    var telefonoText = document.createElement("span");
-                    telefonoText.setAttribute("class","sr-only");
-                    //telefonoText.className = 'info';
-                    telefonoText.textContent = "Telefono: ";
-
-
                     var telefonoLink = document.createElement('a');
-                    var createAText3 = document.createTextNode(commerciante.contatti.telefono);
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
-                    telefonoLink.appendChild(createAText3);
-                    telefonoLink.className = 'info';
-                    telefonoLink.style.display = "block";
-
-                    infoDiv.appendChild(telefonoText);
-                    infoDiv.appendChild(telefonoLink);
+                    //telefonoLink.textContent = "Telefono";
+                    telefonoLink.textContent = commerciante.contatti.telefono;
+                    contattiH3.appendChild(telefonoLink);
+                    contattiH3.append(" ");
                 }
                 
 
                 if (commerciante.email !=="") {
                     var emailLink = document.createElement('a');
-                    var createAText2 = document.createTextNode(commerciante.contatti.email);
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
-                    emailLink.appendChild(createAText2);
-                    emailLink.className = 'info';
-                    emailLink.style.display = "block";
-                    infoDiv.appendChild(emailLink);
+                    emailLink.textContent = "Email";
+                    contattiH3.appendChild(emailLink);
+                    contattiH3.append(" ");
                 }
 
                 if (commerciante.sito !== "") {
                     var sito = document.createElement('a');
-                    sito.style.display = "block";
-                    var createAText = document.createTextNode(commerciante.sito);
                     sito.setAttribute('href', commerciante.sito);
-                    sito.appendChild(createAText);
-                    sito.className = 'info';
+                    sito.textContent = "Sito";
                     infoDiv.appendChild(sito);
-        //getTheTableTag.appendChild(createA);        
-
-
-                //var sitoH3 = document.createElement('h3');
-                //sitoH3.textContent = 'Sito: ' + commerciante.sito;
-                //sitoH3.className = 'info';
-                //infoDiv.appendChild(sitoH3);
+                    contattiH3.appendChild(sito);
+                    contattiH3.append(" ");
                 }
 
                 commercianteDiv.appendChild(infoDiv);
