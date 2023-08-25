@@ -191,6 +191,10 @@ s0.parentNode.insertBefore(s1,s0);
                     telefonoLink.appendChild(createAText3);
                     telefonoLink.className = 'info';
                     telefonoLink.style.display = "block";
+
+                    var telefonoText = document.createAttribute('a');
+                    telefonoText.textContent = "Telefono: "
+                    infoDiv.appendChild(telefonoText);
                     infoDiv.appendChild(telefonoLink);
                 }
                 
