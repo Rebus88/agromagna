@@ -185,14 +185,18 @@ s0.parentNode.insertBefore(s1,s0);
                 //infoDiv.appendChild(contattiH3);
 
                 if (commerciante.telefono !=="") {
+
+                    var telefonoText = document.createElement("span", null, "Telefono: ");
+
+
                     var telefonoLink = document.createElement('a');
                     var createAText3 = document.createTextNode(commerciante.contatti.telefono);
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.appendChild(createAText3);
                     telefonoLink.className = 'info';
                     telefonoLink.style.display = "block";
-                    telefonoLink.innerText = "Telefono: " + telefonoLink;
 
+                    infoDiv.appendChild(telefonoText);
                     infoDiv.appendChild(telefonoLink);
                 }
                 
