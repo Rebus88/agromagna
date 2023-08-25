@@ -190,7 +190,7 @@ s0.parentNode.insertBefore(s1,s0);
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.appendChild(createAText3);
                     telefonoLink.className = 'info';
-                    telefonoLink.appendChild(br);
+                    telefonoLink.style.display = "block";
                     infoDiv.appendChild(telefonoLink);
                 }
                 
@@ -201,12 +201,13 @@ s0.parentNode.insertBefore(s1,s0);
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
                     emailLink.appendChild(createAText2);
                     emailLink.className = 'info';
-                    emailLink.appendChild(br);
+                    emailLink.style.display = "block";
                     infoDiv.appendChild(emailLink);
                 }
 
                 if (commerciante.sito !== "") {
                     var sito = document.createElement('a');
+                    sito.style.display = "block";
                     var createAText = document.createTextNode(commerciante.sito);
                     sito.setAttribute('href', commerciante.sito);
                     sito.appendChild(createAText);
