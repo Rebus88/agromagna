@@ -1,4 +1,4 @@
-Agriromagna è sito per mostrare i commercianti, cioè contadini, allevatori, fungaioli, che vendono vari tipi di prodotti in Romagna a km0.
+Agromagna è un sito per mostrare i commercianti, cioè contadini, allevatori, fungaioli, che vendono vari tipi di prodotti in Romagna a km0.
 
 La pagina carica ad ogni apertura la lista dei commercianti in modo randomico, non dando quindi alcun vantaggio particolare.
 
