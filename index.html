@@ -262,39 +262,6 @@ s0.parentNode.insertBefore(s1,s0);
         }
 
 
-	            function popolaFiltroProdotti() {
-
-            var filtroSelect = document.getElementById('filtroProdotti');
-
-            var prodotti = [];
-
-            commercianti.forEach(function(commerciante) {
-
-                commerciante.prodotti.forEach(function(prodotto) {
-
-                    if (!prodotti.includes(prodotto)) {
-
-                        prodotti.push(prodotto);
-
-                    }
-
-                });
-
-            });
-
-            prodotti.forEach(function(prodotto) {
-
-                var option = document.createElement('option');
-
-                option.value = prodotto;
-
-                option.textContent = prodotto;
-
-                filtroSelect.appendChild(option);
-
-            });
-
-        }
 
 		
 
@@ -306,9 +273,11 @@ s0.parentNode.insertBefore(s1,s0);
 
             commercianti.forEach(function(commerciante) {
 
-		if (!pagamenti.includes(commerciante.sistemiPagamento)) {
+		  commerciante.sistemiPagamento.forEach(function(pagamento) {
 
-                	pagamenti.push(commerciante.sistemiPagamento);
+		if (!pagamenti.includes(pagamento) {
+
+                	pagamenti.push(pagamento);
 
                 }	 
 
