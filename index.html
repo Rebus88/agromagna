@@ -168,6 +168,21 @@ s0.parentNode.insertBefore(s1,s0);
 
         }
 
+ function filtraPaganenti() {
+
+            var filtro = document.getElementById('filtroPagamenti').value;
+
+            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+
+                return commerciante.sistemiPagamento.includes(filtro);
+
+            });
+
+            mostraCommercianti(commerciantiFiltrati);
+
+            ordina();
+ }
+
 		
 
 		function filtraProvince() {
@@ -245,6 +260,74 @@ s0.parentNode.insertBefore(s1,s0);
             });
 
         }
+
+
+	            function popolaFiltroProdotti() {
+
+            var filtroSelect = document.getElementById('filtroProdotti');
+
+            var prodotti = [];
+
+            commercianti.forEach(function(commerciante) {
+
+                commerciante.prodotti.forEach(function(prodotto) {
+
+                    if (!prodotti.includes(prodotto)) {
+
+                        prodotti.push(prodotto);
+
+                    }
+
+                });
+
+            });
+
+            prodotti.forEach(function(prodotto) {
+
+                var option = document.createElement('option');
+
+                option.value = prodotto;
+
+                option.textContent = prodotto;
+
+                filtroSelect.appendChild(option);
+
+            });
+
+        }
+
+		
+
+	function popolaFiltroPagamenti() {
+
+            var filtroSelect = document.getElementById('filtroPagamenti');
+
+            var pagamenti = [];
+
+            commercianti.forEach(function(commerciante) {
+
+		if (!pagamenti.includes(commerciante.sistemiPagamento)) {
+
+                	pagamenti.push(commerciante.sistemiPagamento);
+
+                }	 
+
+            });
+
+            pagamenti.forEach(function(provincia) {
+
+                var option = document.createElement('option');
+
+                option.value = pagamento;
+
+                option.textContent = pagamento;
+
+                filtroSelect.appendChild(option);
+
+            });
+
+		}
+	    
 
 		
 
@@ -479,6 +562,8 @@ s0.parentNode.insertBefore(s1,s0);
         popolaFiltroProdotti();
 
 	    popolaFiltroProvince();
+
+		popolaFitroPagamenti();
 
         mostraCommercianti(commercianti);
 
