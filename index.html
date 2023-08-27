@@ -152,13 +152,16 @@ s0.parentNode.insertBefore(s1,s0);
             });
         }
 
-	function popolaFiltroPagamenti() {
+
+        function popolaFiltroPaganenti() {
             var filtroSelect = document.getElementById('filtroPagamenti');
             var pagamenti = [];
             commercianti.forEach(function(commerciante) {
-		if (!pagamenti.includes(commerciante.sistemiPagamento)) {
-                	pagamenti.push(commerciante.sistemiPagamento);
-                }	 
+                commerciante.sistemiPagamento.forEach(function(pagamento) {
+                    if (!pagamenti.includes(pagamento)) {
+                        pagamenti.push(pagamento);
+                    }
+                });
             });
             pagamenti.forEach(function(pagamento) {
                 var option = document.createElement('option');
@@ -168,6 +171,7 @@ s0.parentNode.insertBefore(s1,s0);
             });
 	}
 
+	    
         function mostraCommercianti(commercianti) {
             var listaCommerciantiDiv = document.getElementById('listaCommercianti');
             listaCommerciantiDiv.innerHTML = '';
