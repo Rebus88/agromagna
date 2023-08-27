@@ -50,10 +50,14 @@
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <button onclick="filtraProdotti()">Filtra</button>
-		<select id="filtroProvince">
+	<select id="filtroProvince">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <button onclick="filtraProvince()">Provincia</button>
+	<select id="filtroPagamenti">
+            <!-- Le opzioni saranno aggiunte dinamicamente -->
+        </select>
+	    <button onclick="filtraPagamenti()">Pagamento</button>
         <button onclick="window.location.reload();">Annulla filtri</button>
         <div id="listaCommercianti"></div>
     </div>
@@ -88,6 +92,15 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroProvince').value;
             var commerciantiFiltrati = commercianti.filter(function(commerciante) {
                 return commerciante.indirizzo.province.includes(filtro);
+            });
+            mostraCommercianti(commerciantiFiltrati);
+            ordina();
+        }
+
+	function filtraPagamenti() {
+            var filtro = document.getElementById('filtroPagamenti').value;
+            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                return commerciante.sistemiPagamento.includes(filtro);
             });
             mostraCommercianti(commerciantiFiltrati);
             ordina();
@@ -138,6 +151,22 @@ s0.parentNode.insertBefore(s1,s0);
                 filtroSelect.appendChild(option);
             });
         }
+
+	function popolaFiltroPagamenti() {
+            var filtroSelect = document.getElementById('filtroPagamenti');
+            var pagamenti = [];
+            commercianti.forEach(function(commerciante) {
+		if (!pagamenti.includes(commerciante.sistemiPagamento)) {
+                	pagamenti.push(commerciante.sistemiPagamento);
+                }	 
+            });
+            pagamenti.forEach(function(pagamento) {
+                var option = document.createElement('option');
+                option.value = pagamento;
+                option.textContent = pagamento;
+                filtroSelect.appendChild(option);
+            });
+	}
 
         function mostraCommercianti(commercianti) {
             var listaCommerciantiDiv = document.getElementById('listaCommercianti');
