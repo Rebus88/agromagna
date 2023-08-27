@@ -173,6 +173,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 	    
         function mostraCommercianti(commercianti) {
+		
             var listaCommerciantiDiv = document.getElementById('listaCommercianti');
             listaCommerciantiDiv.innerHTML = '';
 
@@ -244,6 +245,7 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
+	    
 	fetch('comm.csv')    
         .then(response => response.text())
         .then(data => {
