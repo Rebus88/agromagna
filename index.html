@@ -247,7 +247,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.sito.textContent !== "") {
+                if (commerciante.sito.length <= 0) {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito);
                     sito.setAttribute('target', '_blank')
@@ -257,7 +257,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.sito2.textContent !== "") {
+                if (commerciante.sito2.length <= 0) {
                     var sito2 = document.createElement('a');
                     sito2.setAttribute('href', commerciante.sito2);
                     sito2.setAttribute('target', '_blank')
