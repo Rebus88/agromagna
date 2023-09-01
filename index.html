@@ -239,6 +239,14 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
                 
+                if (commerciante.contatti.telefono3.length > 4) {
+                    var telefonoLink3 = document.createElement('a');
+                    telefonoLink3.setAttribute('href', "tel:+39" + commerciante.contatti.telefono3);
+                    telefonoLink3.textContent = commerciante.contatti.telefono3;
+                    contattiH3.appendChild(telefonoLink3);
+                    contattiH3.append(" ");
+                }
+                
                 if (commerciante.contatti.email.length > 4) {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
@@ -267,6 +275,16 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
+                if (commerciante.sito3.length > 4) {
+                    var sito3 = document.createElement('a');
+                    sito3.setAttribute('href', commerciante.sito3);
+                    sito3.setAttribute('target', '_blank');
+                    sito3.textContent = "Sito 3";
+                    infoDiv.appendChild(sito3);
+                    contattiH3.appendChild(sito3);
+                    contattiH3.append(" ");
+                }
+
                 commercianteDiv.appendChild(infoDiv);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
@@ -292,10 +310,12 @@ s0.parentNode.insertBefore(s1,s0);
                     contatti: {
                         telefono: columns[6],
                         telefono2: columns[7],
-                        email: columns[8]
+                        telefono2: columns[8],
+                        email: columns[9]
                     },
-                    sito: columns[9],
-                    sito2: columns[10]
+                    sito: columns[10],
+                    sito: columns[11],
+                    sito2: columns[12]
                 });
            });
         
