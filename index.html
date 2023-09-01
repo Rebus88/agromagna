@@ -230,6 +230,13 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.appendChild(telefonoLink);
                     contattiH3.append(" ");
                 }
+                if (commerciante.telefono2 !=="") {
+                    var telefonoLink = document.createElement('a');
+                    telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
+                    telefonoLink.textContent = commerciante.contatti.telefono2;
+                    contattiH3.appendChild(telefonoLink);
+                    contattiH3.append(" ");
+                }
                 
                 if (commerciante.contatti.email !=="") {
                     var emailLink = document.createElement('a');
