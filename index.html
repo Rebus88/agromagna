@@ -46,15 +46,15 @@
         Email: <a href="mailto:agromagna@proton.me">agromagna@proton.me</a> - Chat: <a href="https://tawk.to/agromagna" target="_blank">Agromagna</a> - Canale News Telegram: <a href="https://t.me/agromagna" target="_blank">https://t.me/agromagna</a>  (es: aggiunta nuovi commercianti)<br><br>
 	    <b>Consiglio: alle volte alcuni prodotti richiedono una gestione particolare, ad esempio per il trasporto, o non sono disponibili.<br>
 	    Per questo è sempre meglio contattare prima il venditore per ricevere maggiori informazioni e concordare con lui.</b><br><br>
-        Filtra per prodotto <select id="filtroProdotti" onchange="filtraProdotti()">
+        Filtra per prodotto <select id="filtroProdotti" onchange="filtraGenerale()">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <!--<button onclick="filtraProdotti()">Prodotto</button>-->
-		Province: <select id="filtroProvince" onchange="filtraProvince()">
+		Province: <select id="filtroProvince" onchange="filtraGenerale()">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <!--<button onclick="filtraProvince()">Provincia</button>-->
-        Pagamento: <select id="filtroPagamenti" onchange="filtraPagamenti()">
+        Pagamento: <select id="filtroPagamenti" onchange="filtraGenerale()">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <!--<button onclick="filtraPagamenti()">Pagamento</button>-->
@@ -79,11 +79,42 @@ s0.parentNode.insertBefore(s1,s0);
 
         var commercianti = [];
 
+        function filtraGenerale() {
+            var filtroProd = document.getElementById('filtroProdotti').value;
+            var filtroProv = document.getElementById('filtroProvince').value;
+            var filtroPaga = document.getElementById('filtroPagamenti').value;
+
+            var commerciantiFiltrati = commercianti;
+
+            
+            if (filtroProd != "Tutti") {
+                commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                    return commerciante.prodotti.includes(filtroProd);
+                });
+                
+            }
+
+            if (filtroPaga != "Tutti") {
+                commerciantiFiltrati = commerciantiFiltrati.filter(function(commerciante) {
+                    return commerciante.sistemiPagamento.includes(filtroPaga);
+                });
+            }
+
+            if (filtroProv != "Tutte") {
+                commerciantiFiltrati = commerciantiFiltrati.filter(function(commerciante) {
+                    return commerciante.indirizzo.province.includes(filtroProv);
+                });
+            }
+
+            mostraCommercianti(commerciantiFiltrati);
+            ordina();
+        }
+/*
         function filtraProdotti() {
             var filtro = document.getElementById('filtroProdotti').value;
             if (filtro == "Tutti")
             {
-                mostraCommercianti(commercianti);
+                mostraCommercianti(commerciantiFiltrati);
                 ordina();
             }
             else
@@ -100,7 +131,7 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroProvince').value;
             if (filtro == "Tutte")
             {
-                mostraCommercianti(commercianti);
+                mostraCommercianti(commerciantiFiltrati);
                 ordina();
             }
             else
@@ -117,7 +148,7 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroPagamenti').value;
             if (filtro == "Tutti")
             {
-                mostraCommercianti(commercianti);
+                mostraCommercianti(commerciantiFiltrati);
                 ordina();
             }
             else
@@ -129,7 +160,7 @@ s0.parentNode.insertBefore(s1,s0);
                 ordina();
             }
         }
-
+*/
         function ordina() {
             commercianti.sort(function(a, b) {
                 if (a.sistemiPagamento.includes('Bitcoin') && !b.sistemiPagamento.includes('Bitcoin')) {
@@ -273,9 +304,10 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-	fetch('comm.csv')   
+	  
 
     //fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
+    fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
