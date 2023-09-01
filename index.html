@@ -230,6 +230,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.appendChild(telefonoLink);
                     contattiH3.append(" ");
                 }
+
                 if (commerciante.contatti.telefono2 !=="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
@@ -251,6 +252,16 @@ s0.parentNode.insertBefore(s1,s0);
                     sito.setAttribute('href', commerciante.sito);
                     sito.setAttribute('target', '_blank')
                     sito.textContent = "Sito";
+                    infoDiv.appendChild(sito);
+                    contattiH3.appendChild(sito);
+                    contattiH3.append(" ");
+                }
+
+                if (commerciante.contatti.sito2 !== "") {
+                    var sito = document.createElement('a');
+                    sito.setAttribute('href', commerciante.sito2);
+                    sito.setAttribute('target', '_blank')
+                    sito.textContent = "Sito 2";
                     infoDiv.appendChild(sito);
                     contattiH3.appendChild(sito);
                     contattiH3.append(" ");
