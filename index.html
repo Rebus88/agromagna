@@ -273,8 +273,8 @@ s0.parentNode.insertBefore(s1,s0);
         }
 	  
 
-    fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
-    //fetch('comm.csv') 
+    //fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
+    fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
