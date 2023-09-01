@@ -223,14 +223,14 @@ s0.parentNode.insertBefore(s1,s0);
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
-                if (commerciante.telefono !=="") {
+                if (commerciante.contatti.telefono !=="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.textContent = commerciante.contatti.telefono;
                     contattiH3.appendChild(telefonoLink);
                     contattiH3.append(" ");
                 }
-                if (commerciante.telefono2 !=="") {
+                if (commerciante.contatti.telefono2 !=="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
                     telefonoLink.textContent = commerciante.contatti.telefono2;
