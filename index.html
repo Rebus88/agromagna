@@ -223,7 +223,7 @@ s0.parentNode.insertBefore(s1,s0);
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
-                if (commerciante.contatti.telefono !== "") {
+                if (commerciante.contatti.telefono.length > 4) {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.textContent = commerciante.contatti.telefono;
@@ -231,15 +231,15 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.contatti.telefono2 !== "") {
+                if (commerciante.contatti.telefono2.length > 4) {
                     var telefonoLink2 = document.createElement('a');
-                    telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
+                    telefonoLink2.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
                     telefonoLink2.textContent = commerciante.contatti.telefono2;
                     contattiH3.appendChild(telefonoLink2);
                     contattiH3.append(" ");
                 }
                 
-                if (commerciante.contatti.email !== "") {
+                if (commerciante.contatti.email.length > 4) {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
                     emailLink.textContent = "Email";
@@ -247,20 +247,20 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.sito !== "") {
+                if (commerciante.sito.length > 4) {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito);
-                    sito.setAttribute('target', '_blank')
+                    sito.setAttribute('target', '_blank');
                     sito.textContent = "Sito";
                     infoDiv.appendChild(sito);
                     contattiH3.appendChild(sito);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.sito2 !== "") {
+                if (commerciante.sito2.length > 4) {
                     var sito2 = document.createElement('a');
                     sito2.setAttribute('href', commerciante.sito2);
-                    sito2.setAttribute('target', '_blank')
+                    sito2.setAttribute('target', '_blank');
                     sito2.textContent = "Sito 2";
                     infoDiv.appendChild(sito2);
                     contattiH3.appendChild(sito2);
@@ -273,8 +273,8 @@ s0.parentNode.insertBefore(s1,s0);
         }
 	  
 
-    //fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
-    fetch('comm.csv') 
+    fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
+    //fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
