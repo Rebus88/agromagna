@@ -223,7 +223,7 @@ s0.parentNode.insertBefore(s1,s0);
                 contattiH3.className = 'info';
                 infoDiv.appendChild(contattiH3);
 
-                if (commerciante.contatti.telefono !=="") {
+                if (commerciante.contatti.telefono !="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.textContent = commerciante.contatti.telefono;
@@ -231,7 +231,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.contatti.telefono2 !=="") {
+                if (commerciante.contatti.telefono2 !="") {
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
                     telefonoLink.textContent = commerciante.contatti.telefono2;
@@ -239,7 +239,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
                 
-                if (commerciante.contatti.email !=="") {
+                if (commerciante.contatti.email !="") {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
                     emailLink.textContent = "Email";
@@ -247,7 +247,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.contatti.sito !== "") {
+                if (commerciante.contatti.sito != "") {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito);
                     sito.setAttribute('target', '_blank')
@@ -257,7 +257,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.contatti.sito2 !== "") {
+                if (commerciante.contatti.sito2 != "") {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito2);
                     sito.setAttribute('target', '_blank')
