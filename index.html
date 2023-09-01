@@ -58,7 +58,7 @@
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <!--<button onclick="filtraPagamenti()">Pagamento</button>-->
-        <button onclick="window.location.reload();">Annulla filtri</button>
+        <button onclick="reloadPage()">Annulla filtri</button>
         <div id="listaCommercianti"></div>
     </div>
 
@@ -83,7 +83,8 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroProdotti').value;
             if (filtro == "Tutti")
             {
-                window.location.reload();
+                mostraCommercianti(commercianti);
+                ordina();
             }
             else
             {
@@ -99,7 +100,8 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroProvince').value;
             if (filtro == "Tutte")
             {
-                window.location.reload();
+                mostraCommercianti(commercianti);
+                ordina();
             }
             else
             {
@@ -115,7 +117,8 @@ s0.parentNode.insertBefore(s1,s0);
             var filtro = document.getElementById('filtroPagamenti').value;
             if (filtro == "Tutti")
             {
-                window.location.reload();
+                mostraCommercianti(commercianti);
+                ordina();
             }
             else
             {
@@ -177,10 +180,6 @@ s0.parentNode.insertBefore(s1,s0);
                 option.textContent = pagamento;
                 filtroSelect.appendChild(option);
             });
-            //var tutti = document.createElement('tutti');
-            //tutti.value = "Tutti";
-            //tutti.textContent = "Tutti";
-            //filtroSelect.appendChild(tutti);
         }
 
 		function popolaFiltroProvince() {
@@ -300,6 +299,7 @@ s0.parentNode.insertBefore(s1,s0);
            });
         
             // Funzioni per mostrare i commercianti, popolare il filtro, ecc.
+
             
         ordina();
         popolaFiltroProdotti();
@@ -308,6 +308,14 @@ s0.parentNode.insertBefore(s1,s0);
         mostraCommercianti(commercianti);
         
     });
+
+    function reloadPage() {
+            document.getElementById("filtroProdotti").selectedIndex = 0;
+            document.getElementById("filtroProvince").selectedIndex = 0;
+            document.getElementById("filtroPagamenti").selectedIndex = 0;
+            mostraCommercianti(commercianti);
+            ordina();
+    }
     </script>
 </body>
 </html>
