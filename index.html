@@ -46,14 +46,18 @@
         Email: <a href="mailto:agromagna@proton.me">agromagna@proton.me</a> - Chat: <a href="https://tawk.to/agromagna" target="_blank">Agromagna</a> - Canale News Telegram: <a href="https://t.me/agromagna" target="_blank">https://t.me/agromagna</a>  (es: aggiunta nuovi commercianti)<br><br>
 	    <b>Consiglio: alle volte alcuni prodotti richiedono una gestione particolare, ad esempio per il trasporto, o non sono disponibili.<br>
 	    Per questo è sempre meglio contattare prima il venditore per ricevere maggiori informazioni e concordare con lui.</b><br><br>
-        <select id="filtroProdotti">
+        Filtra per prodotto <select id="filtroProdotti" onchange="filtraProdotti()">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
-        <button onclick="filtraProdotti()">Filtra</button>
-		<select id="filtroProvince">
+        <!--<button onclick="filtraProdotti()">Prodotto</button>-->
+		Province: <select id="filtroProvince" onchange="filtraProvince()">
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
-        <button onclick="filtraProvince()">Provincia</button>
+        <!--<button onclick="filtraProvince()">Provincia</button>-->
+        Pagamento: <select id="filtroPagamenti" onchange="filtraPagamenti()">
+            <!-- Le opzioni saranno aggiunte dinamicamente -->
+        </select>
+        <!--<button onclick="filtraPagamenti()">Pagamento</button>-->
         <button onclick="window.location.reload();">Annulla filtri</button>
         <div id="listaCommercianti"></div>
     </div>
@@ -77,20 +81,50 @@ s0.parentNode.insertBefore(s1,s0);
 
         function filtraProdotti() {
             var filtro = document.getElementById('filtroProdotti').value;
-            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
-                return commerciante.prodotti.includes(filtro);
-            });
-            mostraCommercianti(commerciantiFiltrati);
-            ordina();
+            if (filtro == "Tutti")
+            {
+                window.location.reload();
+            }
+            else
+            {
+                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                    return commerciante.prodotti.includes(filtro);
+                });
+                mostraCommercianti(commerciantiFiltrati);
+                ordina();
+            }
         }
 		
 		function filtraProvince() {
             var filtro = document.getElementById('filtroProvince').value;
-            var commerciantiFiltrati = commercianti.filter(function(commerciante) {
-                return commerciante.indirizzo.province.includes(filtro);
-            });
-            mostraCommercianti(commerciantiFiltrati);
-            ordina();
+            if (filtro == "Tutte")
+            {
+                window.location.reload();
+            }
+            else
+            {
+                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                    return commerciante.indirizzo.province.includes(filtro);
+                });
+                mostraCommercianti(commerciantiFiltrati);
+                ordina();
+            }
+        }
+
+        function filtraPagamenti() {
+            var filtro = document.getElementById('filtroPagamenti').value;
+            if (filtro == "Tutti")
+            {
+                window.location.reload();
+            }
+            else
+            {
+                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
+                    return commerciante.sistemiPagamento.includes(filtro);
+                });
+                mostraCommercianti(commerciantiFiltrati);
+                ordina();
+            }
         }
 
         function ordina() {
@@ -115,6 +149,8 @@ s0.parentNode.insertBefore(s1,s0);
                     }
                 });
             });
+            prodotti.sort();
+            prodotti.unshift("Tutti");
             prodotti.forEach(function(prodotto) {
                 var option = document.createElement('option');
                 option.value = prodotto;
@@ -123,6 +159,30 @@ s0.parentNode.insertBefore(s1,s0);
             });
         }
 		
+        function popolaFiltroPagamenti() {
+            var filtroSelect = document.getElementById('filtroPagamenti');
+            var pagamenti = [];
+            commercianti.forEach(function(commerciante) {
+                commerciante.sistemiPagamento.forEach(function(pagamento) {
+                    if (!pagamenti.includes(pagamento)) {
+                        pagamenti.push(pagamento);
+                    }
+                });
+            });
+            pagamenti.sort();
+            pagamenti.unshift("Tutti");
+            pagamenti.forEach(function(pagamento) {
+                var option = document.createElement('option');
+                option.value = pagamento;
+                option.textContent = pagamento;
+                filtroSelect.appendChild(option);
+            });
+            //var tutti = document.createElement('tutti');
+            //tutti.value = "Tutti";
+            //tutti.textContent = "Tutti";
+            //filtroSelect.appendChild(tutti);
+        }
+
 		function popolaFiltroProvince() {
             var filtroSelect = document.getElementById('filtroProvince');
             var province = [];
@@ -131,6 +191,8 @@ s0.parentNode.insertBefore(s1,s0);
                 	province.push(commerciante.indirizzo.province);
                 }	 
             });
+            province.sort();
+            province.unshift("Tutte");
             province.forEach(function(provincia) {
                 var option = document.createElement('option');
                 option.value = provincia;
@@ -201,6 +263,7 @@ s0.parentNode.insertBefore(s1,s0);
                 if (commerciante.sito !== "") {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito);
+                    sito.setAttribute('target', '_blank')
                     sito.textContent = "Sito";
                     infoDiv.appendChild(sito);
                     contattiH3.appendChild(sito);
@@ -211,7 +274,9 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-	fetch('comm.csv')    
+	fetch('comm.csv')   
+
+    //fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
@@ -239,6 +304,7 @@ s0.parentNode.insertBefore(s1,s0);
         ordina();
         popolaFiltroProdotti();
 	    popolaFiltroProvince();
+        popolaFiltroPagamenti();
         mostraCommercianti(commercianti);
         
     });
