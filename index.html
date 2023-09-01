@@ -252,7 +252,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
                 
-                if (commerciante.email !=="") {
+                if (commerciante.contatti.email !=="") {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
                     emailLink.textContent = "Email";
@@ -260,7 +260,7 @@ s0.parentNode.insertBefore(s1,s0);
                     contattiH3.append(" ");
                 }
 
-                if (commerciante.sito !== "") {
+                if (commerciante.contatti.sito !== "") {
                     var sito = document.createElement('a');
                     sito.setAttribute('href', commerciante.sito);
                     sito.setAttribute('target', '_blank')
