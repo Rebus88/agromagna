@@ -109,58 +109,7 @@ s0.parentNode.insertBefore(s1,s0);
             mostraCommercianti(commerciantiFiltrati);
             ordina();
         }
-/*
-        function filtraProdotti() {
-            var filtro = document.getElementById('filtroProdotti').value;
-            if (filtro == "Tutti")
-            {
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-            else
-            {
-                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
-                    return commerciante.prodotti.includes(filtro);
-                });
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-        }
-		
-		function filtraProvince() {
-            var filtro = document.getElementById('filtroProvince').value;
-            if (filtro == "Tutte")
-            {
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-            else
-            {
-                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
-                    return commerciante.indirizzo.province.includes(filtro);
-                });
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-        }
 
-        function filtraPagamenti() {
-            var filtro = document.getElementById('filtroPagamenti').value;
-            if (filtro == "Tutti")
-            {
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-            else
-            {
-                var commerciantiFiltrati = commercianti.filter(function(commerciante) {
-                    return commerciante.sistemiPagamento.includes(filtro);
-                });
-                mostraCommercianti(commerciantiFiltrati);
-                ordina();
-            }
-        }
-*/
         function ordina() {
             commercianti.sort(function(a, b) {
                 if (a.sistemiPagamento.includes('Bitcoin') && !b.sistemiPagamento.includes('Bitcoin')) {
