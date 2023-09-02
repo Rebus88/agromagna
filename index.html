@@ -216,8 +216,21 @@ s0.parentNode.insertBefore(s1,s0);
                 sistemiPagamentoH3.className = 'info';
                 infoDiv.appendChild(sistemiPagamentoH3);
 
+                /*
                 var indirizzoH3 = document.createElement('h3');
                 indirizzoH3.textContent = 'Indirizzo: ' + commerciante.indirizzo.base + ', Provincia: ' + commerciante.indirizzo.province;
+                indirizzoH3.className = 'info';
+                infoDiv.appendChild(indirizzoH3);
+                */
+
+                var indirizzoH3 = document.createElement('h3');
+                indirizzoH3.textContent = 'Indirizzo: ';
+                var indirizzoLink = document.createElement('a');
+                indirizzoLink.setAttribute('href', "https://www.google.com/maps/place/" + commerciante.indirizzo.base);
+                indirizzoLink.setAttribute('target', '_blank');
+                indirizzoLink.textContent = commerciante.indirizzo.base;
+                indirizzoH3.appendChild(indirizzoLink);
+                indirizzoH3.append(", Provincia: " + commerciante.indirizzo.province);
                 indirizzoH3.className = 'info';
                 infoDiv.appendChild(indirizzoH3);
 
@@ -292,8 +305,8 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-	  
-    fetch('comm.csv') 
+	fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv')  
+    //fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
