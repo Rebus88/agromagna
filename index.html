@@ -58,7 +58,7 @@
             <!-- Le opzioni saranno aggiunte dinamicamente -->
         </select>
         <!--<button onclick="filtraPagamenti()">Pagamento</button>-->
-        <button onclick="reloadPage()">Annulla filtri</button>
+        <button onclick="reloadPage()">Annulla filtri</button> <span id="numeroCommercianti"></span>
         <div id="listaCommercianti"></div>
     </div>
 
@@ -182,7 +182,10 @@ s0.parentNode.insertBefore(s1,s0);
 
         function mostraCommercianti(commercianti) {
             var listaCommerciantiDiv = document.getElementById('listaCommercianti');
+            var numeroCommerciantiDiv = document.getElementById('numeroCommercianti');
+
             listaCommerciantiDiv.innerHTML = '';
+            numeroCommerciantiDiv.innerHTML = 'Commercianti presenti: ' + commercianti.length;
 
             commercianti.forEach(function(commerciante) {
                 var commercianteDiv = document.createElement('div');
@@ -290,8 +293,6 @@ s0.parentNode.insertBefore(s1,s0);
             });
         }
 	  
-
-    //fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv') 
     fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
