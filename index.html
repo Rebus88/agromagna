@@ -260,6 +260,7 @@ s0.parentNode.insertBefore(s1,s0);
                 if (commerciante.contatti.email.length > 4) {
                     var emailLink = document.createElement('a');
                     emailLink.setAttribute('href', "mailto:" + commerciante.contatti.email);
+                    emailLink.setAttribute('target', '_blank');
                     emailLink.textContent = "Email";
                     contattiH3.appendChild(emailLink);
                     contattiH3.append(" ");
