@@ -234,14 +234,29 @@ s0.parentNode.insertBefore(s1,s0);
                 infoDiv.appendChild(contattiH3);
 
                 if (commerciante.contatti.telefono.length > 4) {
+                    if (commerciante.contatti.telefono.substring(0, 1) === '3')
+                    {
+                        var image = document.createElement('img');
+                        image.src = "wa.png";
+                        contattiH3.appendChild(image);
+                        image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono, "_blank"));
+                    }
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
                     telefonoLink.textContent = commerciante.contatti.telefono;
                     contattiH3.appendChild(telefonoLink);
                     contattiH3.append(" ");
+
                 }
 
                 if (commerciante.contatti.telefono2.length > 4) {
+                    if (commerciante.contatti.telefono2.substring(0, 1) === '3')
+                    {
+                        var image = document.createElement('img');
+                        image.src = "wa.png";
+                        contattiH3.appendChild(image);
+                        image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono2, "_blank"));
+                    }
                     var telefonoLink2 = document.createElement('a');
                     telefonoLink2.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
                     telefonoLink2.textContent = commerciante.contatti.telefono2;
@@ -250,6 +265,13 @@ s0.parentNode.insertBefore(s1,s0);
                 }
                 
                 if (commerciante.contatti.telefono3.length > 4) {
+                    if (commerciante.contatti.telefono3.substring(0, 1) === '3')
+                    {
+                        var image = document.createElement('img');
+                        image.src = "wa.png";
+                        contattiH3.appendChild(image);
+                        image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono3, "_blank"));
+                    }
                     var telefonoLink3 = document.createElement('a');
                     telefonoLink3.setAttribute('href', "tel:+39" + commerciante.contatti.telefono3);
                     telefonoLink3.textContent = commerciante.contatti.telefono3;
@@ -300,7 +322,7 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-
+ 
     fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
