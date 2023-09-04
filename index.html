@@ -220,7 +220,7 @@ s0.parentNode.insertBefore(s1,s0);
                 var indirizzoH3 = document.createElement('h3');
                 indirizzoH3.textContent = 'Indirizzo: ';
                 var indirizzoLink = document.createElement('a');
-                indirizzoLink.setAttribute('href', "https://www.google.com/maps/place/" + commerciante.indirizzo.base);
+                indirizzoLink.setAttribute('href', "http://maps.google.com/maps?q=" + commerciante.indirizzo.base);
                 indirizzoLink.setAttribute('target', '_blank');
                 indirizzoLink.textContent = commerciante.indirizzo.base;
                 indirizzoH3.appendChild(indirizzoLink);
