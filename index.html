@@ -34,6 +34,11 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .my_div > span {
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 <body>
@@ -190,6 +195,8 @@ s0.parentNode.insertBefore(s1,s0);
             listaCommerciantiDiv.innerHTML = '';
             numeroCommerciantiDiv.innerHTML = 'Commercianti presenti: ' + commercianti.length;
 
+            
+
             commercianti.forEach(function(commerciante) {
                 var commercianteDiv = document.createElement('div');
                 commercianteDiv.className = 'commerciante';
@@ -205,23 +212,43 @@ s0.parentNode.insertBefore(s1,s0);
 
                 var infoDiv = document.createElement('div');
 
-                var nomeH2 = document.createElement('h2');
-                nomeH2.textContent = commerciante.nome;
-                infoDiv.appendChild(nomeH2);
-
-                var scontoH3 = document.createElement('h3');
 
                 let [day, month, year] = commerciante.dataSconto.split('/')
                 var DataSconto = new Date(+year, +month - 1, +day)
+  
+                var parent_div = document.createElement("div");
+                parent_div.classList.add("my_div");
                 
               
                 if (commerciante.sconto.length > 0 && CurrentDate <= DataSconto)
                 {
-                    scontoH3.textContent = " Sconto del " + commerciante.sconto + "% pagando in Bitcoin fino al " + commerciante.dataSconto + "!";
-                    scontoH3.style.color = "red"
-                }
+                    var nomeH2 = document.createElement('span');
+                    nomeH2.textContent = commerciante.nome;
+                    nomeH2.style.fontSize = "24px";
+                    nomeH2.style.fontWeight = "bold";
 
-                infoDiv.appendChild(scontoH3);
+                    var sconto = document.createElement('span');
+                    sconto.textContent = "Sconto del " + commerciante.sconto + "% pagando in Bitcoin fino al " + commerciante.dataSconto.trim().toLocaleString("en-GB") + "!";
+                    sconto.style.color = "#f90"
+                    sconto.style.fontWeight = "bold";
+
+
+                    parent_div.appendChild(nomeH2);
+                    parent_div.append(' ');
+                    parent_div.appendChild(sconto);
+
+                    linebreak = document.createElement("br");
+                    infoDiv.appendChild(linebreak);
+                    infoDiv.appendChild(parent_div);
+                    
+                }
+                else
+                {
+                    var nomeH2 = document.createElement('h2');
+                    nomeH2.textContent = commerciante.nome;
+                    nomeH2.className = 'info';
+                    infoDiv.appendChild(nomeH2)
+                }
 
                 
                 var prodottiH3 = document.createElement('h3');
@@ -255,8 +282,8 @@ s0.parentNode.insertBefore(s1,s0);
                     {
                         var image = document.createElement('img');
                         image.src = "wa.png";
-                        contattiH3.appendChild(image);
                         image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono, "_blank"));
+                        contattiH3.appendChild(image);
                     }
                     var telefonoLink = document.createElement('a');
                     telefonoLink.setAttribute('href', "tel:+39" + commerciante.contatti.telefono);
@@ -271,8 +298,8 @@ s0.parentNode.insertBefore(s1,s0);
                     {
                         var image = document.createElement('img');
                         image.src = "wa.png";
-                        contattiH3.appendChild(image);
                         image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono2, "_blank"));
+                        contattiH3.appendChild(image);
                     }
                     var telefonoLink2 = document.createElement('a');
                     telefonoLink2.setAttribute('href', "tel:+39" + commerciante.contatti.telefono2);
@@ -286,8 +313,8 @@ s0.parentNode.insertBefore(s1,s0);
                     {
                         var image = document.createElement('img');
                         image.src = "wa.png";
-                        contattiH3.appendChild(image);
                         image.addEventListener('click', () => window.open("https://wa.me/39" + commerciante.contatti.telefono3, "_blank"));
+                        contattiH3.appendChild(image);
                     }
                     var telefonoLink3 = document.createElement('a');
                     telefonoLink3.setAttribute('href', "tel:+39" + commerciante.contatti.telefono3);
@@ -339,7 +366,7 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-  
+
     fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
