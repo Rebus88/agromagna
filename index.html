@@ -204,15 +204,15 @@ s0.parentNode.insertBefore(s1,s0);
                 var infoDiv = document.createElement('div');
 
                 var nomeH2 = document.createElement('h2');
-               /* if (commerciante.sconto.length > 0 )
+                if (commerciante.sconto.length > 0 )
                 {
                     nomeH2.textContent = commerciante.nome + " Sconto del " + commerciante.sconto + "% pagando in Bitcoin!";
                 }
                 else
                 {
                     nomeH2.textContent = commerciante.nome;
-                }*/
-                nomeH2.textContent = commerciante.nome
+                }
+                //nomeH2.textContent = commerciante.nome
                 
                 infoDiv.appendChild(nomeH2);
                 var prodottiH3 = document.createElement('h3');
@@ -330,8 +330,8 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-       
-    fetch('comm.csv') 
+        fetch('https://raw.githubusercontent.com/agromagna/agromagna.github.io/master/comm.csv')    
+    //fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
