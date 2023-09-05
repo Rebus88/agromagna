@@ -79,6 +79,8 @@ s0.parentNode.insertBefore(s1,s0);
 
 
         var commercianti = [];
+        var CurrentDate = new Date();
+        //CurrentDate.setHours(0,0,0,0);
 
         function filtraGenerale() {
             var filtroProd = document.getElementById('filtroProdotti').value;
@@ -204,17 +206,24 @@ s0.parentNode.insertBefore(s1,s0);
                 var infoDiv = document.createElement('div');
 
                 var nomeH2 = document.createElement('h2');
-                if (commerciante.sconto.length > 1)
-                {
-                    nomeH2.textContent = commerciante.nome + " Sconto del " + commerciante.sconto + "% pagando in Bitcoin!";
-                }
-                else
-                {
-                    nomeH2.textContent = commerciante.nome;
-                }
-                //nomeH2.textContent = commerciante.nome
-                
+                nomeH2.textContent = commerciante.nome;
                 infoDiv.appendChild(nomeH2);
+
+                var scontoH3 = document.createElement('h3');
+
+                let [day, month, year] = commerciante.dataSconto.split('/')
+                var DataSconto = new Date(+year, +month - 1, +day)
+                
+              
+                if (commerciante.sconto.length > 0 && CurrentDate <= DataSconto)
+                {
+                    scontoH3.textContent = " Sconto del " + commerciante.sconto + "% pagando in Bitcoin fino al " + commerciante.dataSconto + "!";
+                    scontoH3.style.color = "red"
+                }
+
+                infoDiv.appendChild(scontoH3);
+
+                
                 var prodottiH3 = document.createElement('h3');
                 prodottiH3.textContent = 'Prodotti: ' + commerciante.prodotti.join(', ');
                 prodottiH3.className = 'info';
