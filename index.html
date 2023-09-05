@@ -322,8 +322,8 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
- 
-    fetch('comm.csv') 
+    fetch('https://raw.githubusercontent.com/HostFat/hostfat.github.io/master/comm.csv')    
+    //fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
@@ -346,7 +346,9 @@ s0.parentNode.insertBefore(s1,s0);
                     },
                     sito: columns[10],
                     sito2: columns[11],
-                    sito3: columns[12]
+                    sito3: columns[12],
+                    sconto: columns[13],
+                    dataSconto: columns[14]
                 });
            });
         
