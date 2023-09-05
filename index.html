@@ -322,8 +322,8 @@ s0.parentNode.insertBefore(s1,s0);
                 listaCommerciantiDiv.appendChild(commercianteDiv);
             });
         }
-    fetch('https://raw.githubusercontent.com/HostFat/hostfat.github.io/master/comm.csv')    
-    //fetch('comm.csv') 
+    //fetch('https://raw.githubusercontent.com/HostFat/hostfat.github.io/master/comm.csv')    
+    fetch('comm.csv') 
         .then(response => response.text())
         .then(data => {
             var rows = data.split('\n');
